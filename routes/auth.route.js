@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { infoUser, login, register } from "../controllers/auth.controller.js";
+import { infoUser, login, register, refreshToken, logout   } from "../controllers/auth.controller.js";
 import { body } from 'express-validator';
 import { validationResultExpress } from "../middlewares/ValidationResultExpress.js";
 import { requireToken } from '../middlewares/requireToken.js';
@@ -40,6 +40,10 @@ router.post(
    );
 
    router.get("/protected", requireToken, infoUser);
+
+   router.get("/refresh", refreshToken)
+
+   router.get("/logout", logout);
     
    
 
